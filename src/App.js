@@ -1,5 +1,4 @@
-// we use a component called App as the root component of the application
-// it's like a parent component of all components
+import { useState } from "react";
 
 // this data doesn't depend on anything inside of the component, so placed it outside
 const messages = [
@@ -8,25 +7,36 @@ const messages = [
   "Invest your new income 🤑",
 ];
 
+// we use a component called App as the root component of the application
+// it's like a parent component of all components
 export default function App() {
   // says in which step we are
-  const step = 1;
+  // const step = 1;
 
-  // inside of component, we can define any function we want
+  // 1. create a state variable
+  // 2. use the state in JSX
+  // 3. update the state in the event handling (example: handlePrevious & handleNext)
+  const [step, setStep] = useState(1);
+
+  // inside of component, we can define any functions we want
   const handlePrevious = function () {
-    alert(`Previous`);
+    if (step > 1) {
+      setStep(step - 1);
+    }
   };
 
   const handleNext = function () {
-    alert(`Next`);
+    if (step < 3) {
+      setStep(step + 1);
+    }
   };
 
   return (
     <div className="steps">
       <div className="numbers">
-        <div className={`${step >= 1 ? "active" : ""}`}>1</div>
-        <div className={`${step >= 2 ? "active" : ""}`}>2</div>
-        <div className={`${step >= 3 ? "active" : ""}`}>3</div>
+        <div className={step >= 1 ? "active" : ""}>1</div>
+        <div className={step >= 2 ? "active" : ""}>2</div>
+        <div className={step >= 3 ? "active" : ""}>3</div>
       </div>
 
       <p className="message">
@@ -52,3 +62,14 @@ export default function App() {
     </div>
   );
 }
+
+//! SOME NOTES
+
+// 1. useState
+// -> is a function and takes an argument (default value of the state variable)
+// -> returns an array
+// -> const [state variable (1st value), setNameOfStateVariable] = useState(argument)
+// setNameOfStateVariable is a function for updating the state variable
+// useState is ony allowed to call on the top-level of the function
+
+// 2. any function in React that starts from 'use' is called 'hook'
