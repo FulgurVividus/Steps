@@ -12,6 +12,15 @@ export default function App() {
   // says in which step we are
   const step = 1;
 
+  // inside of component, we can define any function we want
+  const handlePrevious = function () {
+    alert(`Previous`);
+  };
+
+  const handleNext = function () {
+    alert(`Next`);
+  };
+
   return (
     <div className="steps">
       <div className="numbers">
@@ -24,11 +33,19 @@ export default function App() {
         Step {step} : {messages[step - 1]}
       </p>
 
+      {/* onEvent={() => ...} OR onEvent={function} is handling events in React way */}
+      {/* in () it's not a function call, it IS a really function */}
       <div className="buttons">
-        <button style={{ backgroundColor: "#7950f2", color: "#fff" }}>
+        <button
+          style={{ backgroundColor: "#7950f2", color: "#fff" }}
+          onClick={handlePrevious} // we just passing a value into the function
+        >
           Previous
         </button>
-        <button style={{ backgroundColor: "#7950f2", color: "#fff" }}>
+        <button
+          style={{ backgroundColor: "#7950f2", color: "#fff" }}
+          onClick={handleNext}
+        >
           Next
         </button>
       </div>
