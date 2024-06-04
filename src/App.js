@@ -19,19 +19,20 @@ export default function App() {
   // inside of component, we can define any functions we want
   const handlePrevious = function () {
     if (step > 1) {
-      setStep(step - 1);
+      // updating state based on the current state
+      setStep((curStep) => curStep - 1);
     }
   };
 
   const handleNext = function () {
     if (step < 3) {
-      setStep(step + 1);
+      setStep((curStep) => curStep + 1);
     }
   };
 
   return (
     <>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
 
